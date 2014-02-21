@@ -1,0 +1,19 @@
+{
+  "name": "bower-files",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/firstandthird/bower-files",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "weekly": "~0.0.47",
+    "oban": "~0.13.0"
+  }
+}

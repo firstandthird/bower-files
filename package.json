@@ -1,0 +1,23 @@
+{
+  "name": "bower-files",
+  "version": "0.1.0",
+  "description": "Node library to get a list of files from bower",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/bower-files.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firstandthird/bower-files/issues"
+  },
+  "homepage": "https://github.com/firstandthird/bower-files",
+  "dependencies": {
+    "bower": "~1.2.8"
+  },
+  "devDependencies": {
+    "deptree": "~0.1.0",
+    "mocha": "~1.17.1"
+  }
+}
