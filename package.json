@@ -12,6 +12,12 @@
   "bugs": {
     "url": "https://github.com/firstandthird/bower-files/issues"
   },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "make test"
+  },
   "homepage": "https://github.com/firstandthird/bower-files",
   "dependencies": {
     "bower": "~1.2.8",

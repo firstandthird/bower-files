@@ -14,6 +14,8 @@
   ],
   "dependencies": {
     "weekly": "~0.0.47",
-    "oban": "~0.13.0"
+    "oban": "~0.13.0",
+    "fidel": "~2.2.5",
+    "Font-Awesome": "~4.0.3"
   }
 }

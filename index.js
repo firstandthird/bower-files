@@ -7,7 +7,7 @@ var bower = require('bower'),
     defaultOpts = {
       type : '.js',
       include: [],
-      map: [],
+      map: {},
       exclude: []
     };
 
@@ -22,7 +22,7 @@ function getDependencies(name, obj, dependencies, options){
       var fullPath = path.resolve(obj.canonicalDir,mainFile),
           relPath = path.relative(__dirname,fullPath);
 
-      if(relPath.indexOf(options.type) > -1 && fs.existsSync(relPath)){
+      if(options.exclude.indexOf(name) === -1 && relPath.indexOf(options.type) > -1 && fs.existsSync(relPath)){
         dependencies.tree.add(name, Object.keys(obj.dependencies));
         dependencies.files[name] = relPath;
       }
@@ -40,7 +40,15 @@ module.exports = function(options, callback){
       files = [],
       error = null,
       deptree = new DepTree(),
-      userOptions = aug(defaultOpts, options);
+      userOptions;
+
+  if (typeof options === "function"){
+    callback = options;
+    options = {};
+  }
+
+  userOptions = aug({},defaultOpts, options);
+
 
   if (!Array.isArray(userOptions.exclude)){
     userOptions.exclude = [userOptions.exclude];
@@ -50,17 +58,17 @@ module.exports = function(options, callback){
   }
 
   callback = callback || noop;
-
   bower.commands.list({ map: true }, { offline: true })
     .on('end', function(data) {
       for (var dep in data.dependencies) {
         if (data.dependencies.hasOwnProperty(dep)){
           if(userOptions.include.length && userOptions.include.indexOf(dep) === -1) {
-            return;
+            continue;
           }
-          if(userOptions.include.length && userOptions.exclude.indexOf(dep) !== -1){
-            return;
+          if(userOptions.exclude.length && userOptions.exclude.indexOf(dep) !== -1){
+            continue;
           }
+
           if (data.dependencies[dep].missing){
             error = new Error(dep + ' is currently missing. Perhaps you\'re missing a bower install?');
             break;
@@ -72,10 +80,9 @@ module.exports = function(options, callback){
         }
       }
       if (error){
-        callback(error,null);
+        callback(error);
         return;
       }
-
       var resolved = deptree.resolve();
 
       for (var i = 0, length = resolved.length; i < length; i++){
@@ -88,7 +95,7 @@ module.exports = function(options, callback){
         callback(null,results);
       }
       else {
-        callback(new Error('No files could be found with given parameters'), null);
+        callback(new Error('No files could be found with given parameters'));
       }
     });
 };
