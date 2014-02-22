@@ -1,25 +1,7 @@
 'use strict';
-
-/**
- * Function which will allow objects to be extended
- */
-Object.defineProperty(Object.prototype, "extend", {
-  enumerable: false,
-  value: function(from) {
-    var props = Object.getOwnPropertyNames(from);
-    var dest = this;
-    props.forEach(function(name) {
-      if (name in dest) {
-        var destination = Object.getOwnPropertyDescriptor(from, name);
-        Object.defineProperty(dest, name, destination);
-      }
-    });
-    return this;
-  }
-});
-
 var bower = require('bower'),
     DepTree = require('deptree'),
+    aug = require('aug'),
     fs = require('fs'),
     path = require('path'),
     defaultOpts = {
@@ -58,7 +40,7 @@ module.exports = function(options, callback){
       files = [],
       error = null,
       deptree = new DepTree(),
-      userOptions = defaultOpts.extend(options || {});
+      userOptions = aug(defaultOpts, options);
 
   if (!Array.isArray(userOptions.exclude)){
     userOptions.exclude = [userOptions.exclude];
