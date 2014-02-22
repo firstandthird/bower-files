@@ -3,7 +3,7 @@
 var assert = require('assert'),
     bowerFiles = require('../index');
 
-describe('Bower-Files', function () {
+suite('Bower-Files', function () {
   it('should only return js files by default', function (done) {
     bowerFiles(function (err, results) {
       var files = results.filter(function (file) {
