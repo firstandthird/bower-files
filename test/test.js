@@ -28,6 +28,15 @@ suite('Bower-Files', function () {
       done();
     });
   });
+  test('Should remove all dependencies from exluded libs', function(done) {
+    bowerFiles({
+      exclude : ['fidel-template']
+    }, function (err, results) {
+      assert.equal(results.indexOf('bower_components/fidel-template/dist/fidel-template.js'),-1);
+      assert.equal(results.indexOf('bower_components/template/dist/template.js'),-1);
+      done();
+    });
+  });
   test('Should include only given libraries and it\'s dependencies', function (done) {
     bowerFiles({
       include : ['fidel']

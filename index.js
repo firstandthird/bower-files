@@ -28,7 +28,7 @@ function getDependencies(name, obj, dependencies, options){
       }
     }
     for (var dependency in obj.dependencies){
-      if (obj.dependencies.hasOwnProperty(dependency)){
+      if (obj.dependencies.hasOwnProperty(dependency) && options.exclude.indexOf(dependency) === -1){
         getDependencies(dependency,obj.dependencies[dependency], dependencies, options);
       }
     }
