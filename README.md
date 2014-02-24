@@ -49,6 +49,18 @@ bowerFiles({
 });
 ```
 
+## CLI Usage
+
+These are the parameters of the CLI:
+
+````
+Options:
+  -t, --type     Type of the files you want to get                                              [default: ".js"]
+  -i, --include  The only libraries you want to include in your results. Comma separated list.
+  -e, --exclude  Libraries you want to exclude and their dependencies. Comma separated list.
+  -h, --help     Shows help info
+````
+
 ### Tests
 
 You can run tests by running `npm test`
