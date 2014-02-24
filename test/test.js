@@ -4,7 +4,7 @@ var assert = require('assert'),
     bowerFiles = require('../index');
 
 suite('Bower-Files', function () {
-  it('should only return js files by default', function (done) {
+  test('should only return js files by default', function (done) {
     bowerFiles(function (err, results) {
       var files = results.filter(function (file) {
         return file.indexOf('.js') === -1;
@@ -13,14 +13,14 @@ suite('Bower-Files', function () {
       done();
     });
   });
-  it('should only return one less file if type is .less', function (done) {
+  test('should only return one less file if type is .less', function (done) {
     bowerFiles({ type: '.less' },function (err, results) {
       assert.equal(results.length,1,'Only one result');
       assert.equal(results[0],'bower_components/oban/oban.less','Only one result');
       done();
     });
   });
-  it('Should exclude given libraries', function (done) {
+  test('Should exclude given libraries', function (done) {
     bowerFiles({
       exclude : ['fidel']
     }, function (err, results) {
@@ -28,7 +28,7 @@ suite('Bower-Files', function () {
       done();
     });
   });
-  it('Should include only given libraries and it\'s dependencies', function (done) {
+  test('Should include only given libraries and it\'s dependencies', function (done) {
     bowerFiles({
       include : ['fidel']
     }, function (err, results) {
@@ -37,7 +37,7 @@ suite('Bower-Files', function () {
       done();
     });
   });
-  it('Should return an error if no files are found', function (done) {
+  test('Should return an error if no files are found', function (done) {
     bowerFiles({
       type: '.hbs'
     }, function (err, results) {
@@ -46,7 +46,7 @@ suite('Bower-Files', function () {
       done();
     });
   });
-  it('Should use the map property to map main properties', function (done) {
+  test('Should use the map property to map main properties', function (done) {
     bowerFiles({
       type: '.css',
       map: {
