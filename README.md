@@ -20,26 +20,34 @@ bowerFiles(function(err, files) {
 
 * `type`: Changes the filetype that is fetched, which by default is `.js`.
 
-    bowerFiles({ type: '.css'}, function(err, files) {});
+```javascript
+bowerFiles({ type: '.css'}, function(err, files) {});
+```
 
 * `include`: Include only dependencies for a given library. Can be an array.
 
-    // Just grab deps for weekly
-    bowerFiles({ include: 'weekly', function(err, files) {});
+```javascript
+// Just grab deps for weekly
+bowerFiles({ include: 'weekly', function(err, files) {});
+```
 
 * `exclude`: Get dependencies except the one specified. Can be an array.
 
-    // Grab all deps except jquery
-    bowerFiles({ exclude: 'jquery', function(err, files){});
+```javascript
+// Grab all deps except jquery
+bowerFiles({ exclude: 'jquery', function(err, files){});
+```
 
 * `map`: Object with paths to given files just in case the library didn't provide a `main` file:
 
-    bowerFiles({
-      type: '.css',
-      map: {
+```javascript
+bowerFiles({
+    type: '.css',
+    map: {
         'Font-Awesome' : 'css/font-awesome.css'
-      }
     }
+});
+```
 
 ### Tests
 
