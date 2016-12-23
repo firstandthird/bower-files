@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/firstandthird/bower-files",
   "dependencies": {
-    "bower": "~1.2.8",
-    "deptree": "~0.1.0",
-    "aug": "~0.1.0",
+    "bower": "~1.8.0",
+    "deptree": "~1.0.0",
+    "aug": "~1.0.1",
     "optimist": "~0.6.1"
   },
   "devDependencies": {
-    "mocha": "~1.17.1"
+    "mocha": "~3.2.0"
   }
 }
